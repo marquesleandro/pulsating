@@ -374,10 +374,20 @@ for t in tqdm(range(0, nt)):
   line = dirichlet_pts[1][i][0] - 1
   v1 = dirichlet_pts[1][i][1] - 1
   v2 = dirichlet_pts[1][i][2] - 1
- 
-  if line == 0 or line == 3:
-   y_boundary[v1] = 0.01*np.cos(2.0*np.pi*x[v1]/5.0)*np.sin(2.0*np.pi*x[v1]/5.0)*np.sin(2.0*np.pi*t/32.0)
-   y_boundary[v2] = 0.01*np.cos(2.0*np.pi*x[v2]/5.0)*np.sin(2.0*np.pi*x[v2]/5.0)*np.sin(2.0*np.pi*t/32.0)
+
+  # oscillatory parameters ok
+  # center point x=5.3
+  if line == 0:
+   y_boundary[v1] = 2.0*0.01*np.sin((2.0*np.pi/7.0)*x[v1])*np.cos((2.0*np.pi/32.0)*t)
+   y_boundary[v2] = 2.0*0.01*np.sin((2.0*np.pi/7.0)*x[v2])*np.cos((2.0*np.pi/32.0)*t)
+
+  elif line == 3:
+   y_boundary[v1] = -2.0*0.01*np.sin((2.0*np.pi/7.0)*x[v1])*np.cos((2.0*np.pi/32.0)*t)
+   y_boundary[v2] = -2.0*0.01*np.sin((2.0*np.pi/7.0)*x[v2])*np.cos((2.0*np.pi/32.0)*t)
+
+
+
+
 
  y = y + y_boundary
  # --------------------------------------------------------------------------------
